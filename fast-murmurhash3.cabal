@@ -1,17 +1,33 @@
 name: fast-murmurhash3
 version: 0.1
 build-type: Simple
-cabal-version: >= 1.8
+cabal-version: >= 2.0
 
 library
-  hs-source-dirs: src
   build-depends:
-      base >= 4.3 && < 5
-    , bytestring
+      fast-murmurhash3-indef
+    , word-array-bytestring
+  reexported-modules:
+    Data.Digest.MurmurHash3
+
+library fast-murmurhash3-indef
+  hs-source-dirs: src/fast-murmurhash3-indef
+  signatures: WordArray
+  build-depends:
+    base >= 4.3 && < 5
   exposed-modules:
     Data.Digest.MurmurHash3
   other-modules:
     Data.Digest.MurmurHash3.X86.Word32
+  default-language: Haskell2010
+
+library word-array-bytestring
+  hs-source-dirs: src/word-array-bytestring
+  build-depends:
+      base >= 4.3 && < 5
+    , bytestring
+  exposed-modules:
+    WordArray
 
 test-suite spec
   type: exitcode-stdio-1.0
@@ -24,6 +40,7 @@ test-suite spec
     , fast-murmurhash3
     , murmur3
     , QuickCheck
+  default-language: Haskell2010
 
 benchmark bench-time
   type: exitcode-stdio-1.0
@@ -37,6 +54,7 @@ benchmark bench-time
     , gauge
     , murmur3
     , random
+  default-language: Haskell2010
 
 benchmark bench-memory
   type: exitcode-stdio-1.0
@@ -49,3 +67,4 @@ benchmark bench-memory
     , fast-murmurhash3
     , murmur3
     , weigh
+  default-language: Haskell2010
