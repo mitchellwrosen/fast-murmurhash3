@@ -1,0 +1,51 @@
+name: fast-murmurhash3
+version: 0.1
+build-type: Simple
+cabal-version: >= 1.8
+
+library
+  hs-source-dirs: src
+  build-depends:
+      base >= 4.3 && < 5
+    , bytestring
+  exposed-modules:
+    Data.Digest.MurmurHash3
+  other-modules:
+    Data.Digest.MurmurHash3.X86.Word32
+
+test-suite spec
+  type: exitcode-stdio-1.0
+  hs-source-dirs: test
+  main-is: Main.hs
+  build-depends:
+      base
+    , bytestring
+    , Dish
+    , fast-murmurhash3
+    , murmur3
+    , QuickCheck
+
+benchmark bench-time
+  type: exitcode-stdio-1.0
+  hs-source-dirs: bench
+  main-is: BenchTime.hs
+  build-depends:
+      base
+    , bytestring
+    , Dish
+    , fast-murmurhash3
+    , gauge
+    , murmur3
+    , random
+
+benchmark bench-memory
+  type: exitcode-stdio-1.0
+  hs-source-dirs: bench
+  main-is: BenchMemory.hs
+  build-depends:
+      base
+    , bytestring
+    , Dish
+    , fast-murmurhash3
+    , murmur3
+    , weigh
