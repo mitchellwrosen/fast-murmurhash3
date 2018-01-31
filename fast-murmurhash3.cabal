@@ -27,7 +27,10 @@ library word-array-bytestring
       base >= 4.3 && < 5
     , bytestring
   exposed-modules:
-    WordArray
+    WordArray.ByteString
+  reexported-modules:
+    WordArray.ByteString as WordArray
+  default-language: Haskell2010
 
 test-suite spec
   type: exitcode-stdio-1.0

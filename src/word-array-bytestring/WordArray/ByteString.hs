@@ -1,7 +1,7 @@
 {-# language BangPatterns #-}
 {-# language ScopedTypeVariables #-}
 
-module WordArray where
+module WordArray.ByteString where
 
 import Data.Bits
 import Data.ByteString (ByteString)
@@ -30,6 +30,7 @@ fold32 f z bytes =
       in
         loop z 0
  where
+  nwords :: Int
   nwords =
     ByteString.length bytes `div` 4
 
